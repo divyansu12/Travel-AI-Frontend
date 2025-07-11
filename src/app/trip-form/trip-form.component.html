@@ -1,0 +1,59 @@
+<div class="trip-agent-container">
+  <div class="form-pane">
+    <form [formGroup]="tripForm" (ngSubmit)="submitForm()" class="trip-form">
+      <h2 class="m-15">🧳 Trip Advisor Agent</h2>
+
+      <label>From:</label>
+      <input formControlName="from" placeholder="Enter departure city" />
+
+      <label>To:</label>
+      <input formControlName="to" placeholder="Enter destination city" /> 
+
+      <label>Preferred Mode of Transportation:</label>
+        <select formControlName="transportation" placeholder="Select transportation">
+          <option value="" disabled selected>Select transportation</option>
+          <option value="bike trip">Bike Trip</option>
+          <option value="car">Car</option>
+          <option value="flight">Flight</option>
+          <option value="train">Train</option>
+          <option value="bus">Bus</option>
+          <option value="anyone">Anyone</option>
+        </select>
+
+        
+      <label>Date From:</label>
+      <input type="date" formControlName="dateFrom" placeholder="Enter start date" />
+
+      <label>Total Days:</label>
+      <input formControlName="totalDays" placeholder="Enter total days" />
+
+      <label>Number of Persons:</label>
+      <input type="number" formControlName="persons" placeholder="Enter number of persons" />
+
+      <label>Budget (₹):</label>
+      <input type="number" formControlName="budget" placeholder="Enter budget" />
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Planning...' : 'Submit' }}
+      </button>
+    </form>
+  </div>
+
+  <!-- Right info pane for desktop -->
+  <div class="info-pane" *ngIf="!agentReply">
+    <h3>🌍 Your Personal AI Travel Assistant</h3>
+    <ul>
+      <li>✨ Smart destination insights</li>
+      <li>📅 Custom itinerary planning</li>
+      <li>💸 Budget optimization</li>
+      <li>🍽️ Restaurant & hotel suggestions</li>
+    </ul>
+    <!-- <img src="assets/travel-illustration.png" alt="Travel AI" class="travel-image" /> -->
+  </div>
+
+  <!-- Response pane -->
+  <div class="response-wrapper" *ngIf="agentReply">
+    <h2 class="response-heading">🧳 Your AI-Powered Travel Plan</h2>
+    <div class="trip-response" [innerHTML]="formattedReply"></div>
+  </div>
+</div>

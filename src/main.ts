@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { TripFormComponent } from './app/trip-form/trip-form.component';
 import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+bootstrapApplication(TripFormComponent, appConfig)
+  .catch(err => console.error(err));
